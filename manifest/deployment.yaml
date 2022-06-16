@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cherry-apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : cherry-apps
+  template:
+    metadata:
+      labels:
+        app : cherry-apps
+    spec:
+      serviceAccountName: dm-incluster
+      containers:
+        - name: cherry-apps
+          image: acs108102/incluster:latest
+          imagePullPolicy: IfNotPresent
